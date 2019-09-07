@@ -1,13 +1,12 @@
 import React from 'react';
-import SerchForm from './components/SearchForm';
+import AddForm from './components/AddForm';
 import CarsListing from './components/CarsListing';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-          header 
-      </header>
+      <AddForm/>
+      <CarsListing/>
     </div>
   );
 }

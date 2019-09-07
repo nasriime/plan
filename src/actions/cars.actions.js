@@ -1,4 +1,6 @@
-import { LOAD_CARS_LOADING, LOAD_CARS_SUCCESS, LOAD_CARS_ERROR } from './types';
+import { LOAD_CARS_LOADING, LOAD_CARS_SUCCESS,
+        LOAD_CARS_ERROR, ADD_CAR, UPDATE_CAR,
+        REMOVE_CAR } from './types';
 import axios from 'axios';
 
 
