@@ -1,7 +1,7 @@
 import { LOAD_CARS_LOADING, LOAD_CARS_SUCCESS, LOAD_CARS_ERROR } from './types';
 
 const initialState = {
-    cars: [],
+    data: [],
     loading: false,  
     error: '' 
 }

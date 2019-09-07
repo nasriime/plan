@@ -17,9 +17,9 @@ class CarsListing extends Component {
 }
 
 const mapStateToProps = state => ({  
-    data: state.reduxThunk.data,  
-    loading: state.reduxThunk.loading,  
-    error: state.reduxThunk.error,  
+    data: state.carsReducer.data,  
+    loading: state.carsReducer.loading,  
+    error: state.carsReducer.error,  
  });  
    
  const mapDispatchToProps = {  
