@@ -1,2 +1,3 @@
-export const FETCH_CARS = 'FETCH_CARS';
-export const SEARCH_CARS = 'SEARCH_CARS';
+export const LOAD_CARS_LOADING = 'LOAD_CARS_LOADING';
+export const LOAD_CARS_SUCCESS = 'LOAD_CARS_SUCCESS';
+export const LOAD_CARS_ERROR = 'LOAD_CARS_ERROR';
