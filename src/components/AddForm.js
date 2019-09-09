@@ -14,6 +14,7 @@ class AddForm extends Component {
             price: null,
             type: ''
         }
+        this.CarsType = [{name: 'SUV'}, {name: 'Sport Car'}, {name: 'Van'}]
         this.onChange =this.onChange.bind(this);
     }
 
@@ -32,24 +33,29 @@ class AddForm extends Component {
                         <label htmlFor="name">Car name</label>
                         <input type="text" className="form-control" id="name" 
                             value={name} onChange={this.onChange}
-                            aria-describedby="emailHelp" placeholder="Enter email" />
+                            aria-describedby="emailHelp" placeholder="Car name" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="model">Model</label>
                         <input type="text" className="form-control" id="model" 
-                            value={model} onChange={this.onChange} placeholder="Password" />
+                            value={model} onChange={this.onChange} placeholder="Model" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="horsepower">Horsepower</label>
                         <input type="text" className="form-control" id="horsepower" 
-                            value={horsepower} onChange={this.onChange} placeholder="Password" />
+                            value={horsepower} onChange={this.onChange} placeholder="Horsepower" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="price">Price</label>
                         <input type="text" className="form-control" id="price" 
-                            value={price} onChange={this.onChange} placeholder="Password" />
+                            value={price} onChange={this.onChange} placeholder="Price" />
                     </div>
-                    
+                    <div class="form-group">
+                        <label htmlFor="type">Type</label>
+                        <select className="form-control" value={type} id="type">
+                            { this.CarsType.map((item,i)=> (<option value={item.name} key={i}>{item.name}</option>) )}
+                        </select>
+                    </div>
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
             </div>
