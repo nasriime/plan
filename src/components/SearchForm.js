@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { debounce } from 'lodash'
+import { searchCars } from '../actions/cars.actions';
 
 class SearchForm extends Component {
     constructor(props){
@@ -10,11 +12,13 @@ class SearchForm extends Component {
           search:''
         }
         this.onChange =this.onChange.bind(this);
+        this.changeSearch = debounce(this.props.searchCars, 250)
     }
 
     onChange(e){
-        this.setState({ [e.target.name]: e.target.value });
-        this.props.searchProducts(this.state.searchTerm);
+        this.setState({ search: e.target.value },() => {
+            this.changeSearch(this.state.search)
+          });
     }
 
     render() {
@@ -22,9 +26,9 @@ class SearchForm extends Component {
 
         return (
             <div>
-                <input type="text" className="form-control" id="search" 
-                            value={search} onChange={this.onChange}
-                            aria-describedby="search" placeholder="Search by car name" />
+                <input type="text" className="form-control" id="search" name="search"
+                    value={search} onChange={this.onChange}
+                    aria-describedby="search" placeholder="Search by car name" />
             </div>
         )
     }
@@ -38,7 +42,7 @@ const mapStateToProps = state => ({
  });  
    
 const mapDispatchToProps = {  
-    
+    searchCars
  };  
 
 SearchForm.propTypes = {

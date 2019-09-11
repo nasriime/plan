@@ -6,8 +6,8 @@ import CarsListing from './components/CarsListing';
 function App() {
   return (
     <div className="container">
-      <AddForm/> 
-      {/* <SearchForm/> */}
+      {/* <AddForm/>  */}
+      <SearchForm/>
       <CarsListing/>
     </div>
   );
