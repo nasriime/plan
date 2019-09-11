@@ -8,9 +8,8 @@ export const loadCars = () => dispatch => {
     dispatch({ type: LOAD_CARS_LOADING });  
 
     axios.get('http://localhost:4000/cars') 
-        .then(response => response.json())  
         .then(  
-            data => dispatch({ type: LOAD_CARS_SUCCESS, data }),  
+            data => dispatch({ type: LOAD_CARS_SUCCESS, data: data.data }),  
             error => dispatch({ type: LOAD_CARS_ERROR, error: error.message || 'Unexpected Error!!!' })  
         )  
  };  
@@ -19,15 +18,19 @@ export const loadCars = () => dispatch => {
     
 }
 
-export const addCar = searchterm => dispatch => {
+export const addCar = addedCar => dispatch => {
+    axios.post('http://localhost:4000/cars') 
+    .then(  
+        data => dispatch({ type: LOAD_CARS_SUCCESS, data: data.data }),  
+        error => dispatch({ type: LOAD_CARS_ERROR, error: error.message || 'Unexpected Error!!!' })  
+    ) 
+}
+
+export const updateCar = updatedCar => dispatch => {
     
 }
 
-export const updateCar = searchterm => dispatch => {
-    
-}
-
-export const DeleteCar = searchterm => dispatch => {
+export const DeleteCar = DeletedCar => dispatch => {
     
 }
 

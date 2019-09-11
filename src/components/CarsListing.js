@@ -4,15 +4,16 @@ import { loadCars } from '../actions/cars.actions';
 
 class CarsListing extends Component {
     componentDidMount(){
-        loadCars()
+        this.props.loadCars()
     }
 
     render() {
         const { data, loading, error } = this.props;
-
         return (
             <div>
-                {{data}}
+                {data.map(car=>
+                    <p key={car.id}>{car.name}</p>
+                )}
             </div>
         )
     }
@@ -34,5 +35,4 @@ const mapStateToProps = state => ({
 
 export default connect( 
     mapStateToProps,  
-    mapDispatchToProps
-    )(CarsListing)
+    mapDispatchToProps)(CarsListing)
