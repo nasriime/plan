@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { uuidv1} from 'uuid/v1';
+import uuid from "uuid";
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { addCar } from '../actions/cars.actions';
@@ -10,17 +10,37 @@ class AddForm extends Component {
         this.state = {  
             name: '',  
             model: '',  
-            horsepower: null,  
-            price: null,
+            horsepower: '',  
+            price: '',
             type: ''
         }
         this.CarsType = [{name: 'SUV'}, {name: 'Sport Car'}, {name: 'Van'}]
         this.onChange =this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
     onChange(e){
         this.setState({ [e.target.name]: e.target.value });
-        this.props.searchProducts(this.state.searchTerm);
+    }
+
+    onSubmit(e){
+        e.preventDefault();
+        const {name, model, horsepower, price, type} = this.state;
+        this.props.addCar({
+            // id: uuid.v4(),
+            name,  
+            model,  
+            horsepower,  
+            price,
+            type
+        });
+        this.setState({
+            name: '',  
+            model: '',  
+            horsepower: '',  
+            price: 's',
+            type: ''
+        })
     }
 
     render() {
@@ -28,31 +48,31 @@ class AddForm extends Component {
 
         return (
             <div>
-                <form>
+                <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label htmlFor="name">Car name</label>
-                        <input type="text" className="form-control" id="name" 
+                        <input type="text" className="form-control" id="name" name="name"
                             value={name} onChange={this.onChange}
                             aria-describedby="emailHelp" placeholder="Car name" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="model">Model</label>
-                        <input type="text" className="form-control" id="model" 
+                        <input type="text" className="form-control" id="model" name="model"
                             value={model} onChange={this.onChange} placeholder="Model" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="horsepower">Horsepower</label>
-                        <input type="text" className="form-control" id="horsepower" 
+                        <input type="text" className="form-control" id="horsepower" name="horsepower"
                             value={horsepower} onChange={this.onChange} placeholder="Horsepower" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="price">Price</label>
-                        <input type="text" className="form-control" id="price" 
+                        <input type="text" className="form-control" id="price" name="price"
                             value={price} onChange={this.onChange} placeholder="Price" />
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <label htmlFor="type">Type</label>
-                        <select className="form-control" value={type} id="type">
+                        <select className="form-control" onChange={this.onChange} value={type} id="type" name="type">
                             { this.CarsType.map((item,i)=> (<option value={item.name} key={i}>{item.name}</option>) )}
                         </select>
                     </div>
@@ -70,7 +90,7 @@ const mapStateToProps = state => ({
  });  
    
 const mapDispatchToProps = {  
-    
+    addCar
  };  
 
 AddForm.propTypes = {

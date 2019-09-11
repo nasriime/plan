@@ -1,28 +1,28 @@
-{  
-    "cars": [  
-      {  
-        "id": 1,  
-        "name": "Mercedes",  
-        "model": "w212",  
-        "horsepower": 170,  
-        "price": 300000,
-        "type":"Van"
-      },  
-      {  
-        "id": 2,  
-        "name": "Volks Wagen",  
-        "model": "passat",  
-        "horsepower": 190,  
-        "price": 500000 ,
-        "type":"SUV"
-      },
-      {  
-        "id": 3,  
-        "name": "BMW",  
-        "model": "X3",  
-        "horsepower": 210,  
-        "price": 700000 ,
-        "type":"sportscar"
-      }  
-    ]  
-   }  
+{
+  "cars": [
+    {
+      "id": 1,
+      "name": "Mercedes",
+      "model": "w212",
+      "horsepower": 170,
+      "price": 300000,
+      "type": "Van"
+    },
+    {
+      "id": 2,
+      "name": "Volks Wagen",
+      "model": "passat",
+      "horsepower": 190,
+      "price": 500000,
+      "type": "SUV"
+    },
+    {
+      "id": 3,
+      "name": "BMW",
+      "model": "X3",
+      "horsepower": 210,
+      "price": 700000,
+      "type": "sportscar"
+    }
+  ]
+}
