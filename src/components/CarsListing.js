@@ -15,8 +15,8 @@ class CarsListing extends Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         const  { search, data } = this.props;
 
-        if (prevProps.search !== this.props.search) {
-            if(!this.props.search){
+        if (prevProps.search !== search) {
+            if(!search){
                 this.setState({ filteredCars: data })
             }
             const filter = Object.assign([], data).filter(

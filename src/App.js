@@ -6,7 +6,7 @@ import CarsListing from './components/CarsListing';
 function App() {
   return (
     <div className="container">
-      {/* <AddForm/>  */}
+      <AddForm/> 
       <SearchForm/>
       <CarsListing/>
     </div>

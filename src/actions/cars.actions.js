@@ -20,8 +20,7 @@ export const loadCars = () => dispatch => {
     //         data => dispatch({ type: SEARCH_CAR, data: data.data }),  
     //         error => dispatch({ type: LOAD_CARS_ERROR, error: error.message || 'Unexpected Error!!!' })  
     //     )  
-    console.log('searchterm=======', searchterm)
-    dispatch({ type: LOAD_CARS_LOADING, data: searchterm });  
+    dispatch({ type: SEARCH_CAR, data: searchterm });  
 }
 
 export const addCar = addedCar => dispatch => {
