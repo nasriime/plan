@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { isEmpty } from 'lodash';
 import uuid from "uuid";
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { addCar } from '../actions/cars.actions';
+import { addCar, updateCar, updatedCar } from '../actions/cars.actions';
 class AddForm extends Component {
     constructor(props){
         super(props);
@@ -17,6 +18,8 @@ class AddForm extends Component {
         this.CarsType = [{name: 'SUV'}, {name: 'Sport Car'}, {name: 'Van'}]
         this.onChange =this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.cancelEdit = this.cancelEdit.bind(this);
+        this.editCar = this.editCar.bind(this);
     }
 
     onChange(e){
@@ -43,8 +46,53 @@ class AddForm extends Component {
         })
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        const  { itemToUpdate } = this.props;
+
+        if (prevProps.itemToUpdate !== itemToUpdate) {
+            if(isEmpty(itemToUpdate)){
+                this.setState({  
+                    name: '',  
+                    model: '',  
+                    horsepower: '',  
+                    price: '',
+                    type: ''
+                });
+            }else{
+                this.setState({  
+                    name: itemToUpdate.name,  
+                    model: itemToUpdate.model,  
+                    horsepower: itemToUpdate.horsepower,  
+                    price: itemToUpdate.price, 
+                    type: itemToUpdate.type
+                });
+            }
+
+        }        
+    }
+
+    cancelEdit(){
+        this.props.updateCar({});
+    }
+
+    editCar(){
+        const {name, model, horsepower, price, type} = this.state;
+        const  { itemToUpdate } = this.props;
+        const item = {
+            id: itemToUpdate.id,
+            name,  
+            model,  
+            horsepower : Number(horsepower),  
+            price: Number(price),
+            type
+        }
+        this.props.updatedCar(item);
+        this.props.updateCar({});
+    }
+
     render() {
         const {name, model, horsepower, price, type} = this.state;
+        const  { itemToUpdate } = this.props;
 
         return (
             <div>
@@ -76,8 +124,16 @@ class AddForm extends Component {
                             { this.CarsType.map((item,i)=> (<option value={item.name} key={i}>{item.name}</option>) )}
                         </select>
                     </div>
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    { isEmpty(itemToUpdate) && (
+                        <button type="submit" className="btn btn-primary">Submit</button>
+                    )}
                 </form>
+                { !isEmpty(itemToUpdate) && (
+                    <>
+                        <button className="btn btn-primary" onClick={this.editCar}>Edit</button>
+                        <button className="btn btn-primary" onClick={this.cancelEdit}>cancel</button>
+                    </>
+                )}
             </div>
         )
     }
@@ -86,11 +142,14 @@ class AddForm extends Component {
 const mapStateToProps = state => ({  
     data: state.carsReducer.data,  
     loading: state.carsReducer.loading,  
-    error: state.carsReducer.error,  
+    error: state.carsReducer.error, 
+    itemToUpdate: state.carsReducer.itemToUpdate, 
  });  
    
 const mapDispatchToProps = {  
-    addCar
+    addCar,
+    updateCar,
+    updatedCar
  };  
 
 AddForm.propTypes = {

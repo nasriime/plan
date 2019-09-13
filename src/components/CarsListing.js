@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { loadCars, DeleteCar } from '../actions/cars.actions';
+import { loadCars, DeleteCar, updateCar } from '../actions/cars.actions';
 
 class CarsListing extends Component {
 
@@ -9,7 +9,8 @@ class CarsListing extends Component {
         this.state={
             filteredCars : [] 
         }
-        this.onClick = this.onClick.bind(this)
+        this.remove = this.remove.bind(this)
+        this.edit = this.edit.bind(this)
     }
     
    
@@ -36,8 +37,12 @@ class CarsListing extends Component {
         }
     }
 
-    onClick(car){
+    remove(car){
         this.props.DeleteCar(car);
+    }
+
+    edit(car){
+        this.props.updateCar(car);
     }
 
     render() {
@@ -49,8 +54,12 @@ class CarsListing extends Component {
           
         return (
             <div>
-                {this.state.filteredCars.map(car=>
-                    <p onClick={(e) =>this.onClick(car)} key={car.id}>{car.name}</p>
+                {this.state.filteredCars.map(car=> 
+                        <div key={car.id}>
+                            <span >{car.name}</span>
+                            <button onClick={(e) =>this.edit(car)}>Edit</button>
+                            <button onClick={(e) =>this.remove(car)}>X</button>
+                        </div>
                 )}
             </div>
         )
@@ -66,7 +75,8 @@ const mapStateToProps = state => ({
    
  const mapDispatchToProps = {  
     loadCars,
-    DeleteCar 
+    DeleteCar,
+    updateCar
  };
 
  CarsListing.propTypes = {

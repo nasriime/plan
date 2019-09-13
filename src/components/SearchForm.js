@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { debounce } from 'lodash'
+import { debounce } from 'lodash';
 import { searchCars } from '../actions/cars.actions';
 
 class SearchForm extends Component {

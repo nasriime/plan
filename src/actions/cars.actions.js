@@ -1,6 +1,5 @@
-import { LOAD_CARS_LOADING, LOAD_CARS_SUCCESS,
-        LOAD_CARS_ERROR, ADD_CAR, UPDATE_CAR, SEARCH_CAR, 
-        REMOVE_CAR } from './types';
+import { LOAD_CARS_LOADING, LOAD_CARS_SUCCESS, LOAD_CARS_ERROR, 
+        ADD_CAR, UPDATE_CAR, SEARCH_CAR, REMOVE_CAR, CAR_TO_UPDATE } from './types';
 import axios from 'axios';
 
 
@@ -27,11 +26,16 @@ export const addCar = addedCar => dispatch => {
 }
 
 export const DeleteCar = DeletedCar => dispatch => {
-    console.log('DeletedCar', DeletedCar);
     dispatch({ type: REMOVE_CAR, data: DeletedCar });  
 
 }
 
-export const updateCar = updatedCar => dispatch => {
-    
+export const updateCar = carToUpdate => dispatch => {
+    dispatch({ type: UPDATE_CAR, data: carToUpdate });  
+
+}
+
+export const updatedCar = carToUpdate => dispatch => {
+    dispatch({ type: CAR_TO_UPDATE, data: carToUpdate });  
+
 }

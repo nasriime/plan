@@ -1,12 +1,12 @@
 import { LOAD_CARS_LOADING, LOAD_CARS_SUCCESS, LOAD_CARS_ERROR, SEARCH_CAR,
-    ADD_CAR, UPDATE_CAR, REMOVE_CAR } from '../actions/types';
+    ADD_CAR, UPDATE_CAR, CAR_TO_UPDATE, REMOVE_CAR } from '../actions/types';
 
 const initialState = {
     data: [],
     loading: false,  
     error: '',
     search: '',
-    // deletedItem: {}
+    itemToUpdate: {}
 }
 
 export default function(state = initialState, action){
@@ -49,6 +49,20 @@ export default function(state = initialState, action){
             return {
                 ...state,
                 data: newCrasArray
+            }
+        }
+        case UPDATE_CAR: {
+            return {
+                ...state,
+                itemToUpdate: action.data
+            }
+        }
+        case CAR_TO_UPDATE: {
+            const objIndex = state.data.findIndex((obj => obj.id === action.data.id));
+            state.data[objIndex] = action.data;
+            return {
+                ...state,
+                data: [...state.data]
             }
         }
         default: {
