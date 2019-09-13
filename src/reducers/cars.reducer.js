@@ -4,7 +4,8 @@ import { LOAD_CARS_LOADING, LOAD_CARS_SUCCESS, LOAD_CARS_ERROR, SEARCH_CAR,
 const initialState = {
     data: [],
     loading: false,  
-    error: '' 
+    error: '',
+    search: ''
 }
 
 export default function(state = initialState, action){
@@ -39,7 +40,7 @@ export default function(state = initialState, action){
         case SEARCH_CAR: {
             return {
                 ...state,
-                data: [...state.data, action.data]
+                search: action.data
             }
         }
         default: {
