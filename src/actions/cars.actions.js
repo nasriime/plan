@@ -15,11 +15,6 @@ export const loadCars = () => dispatch => {
  };  
 
  export const searchCars = searchterm => dispatch => {
-    // axios.get(`http://localhost:4000/cars?name=${searchterm}`) 
-    //     .then(  
-    //         data => dispatch({ type: SEARCH_CAR, data: data.data }),  
-    //         error => dispatch({ type: LOAD_CARS_ERROR, error: error.message || 'Unexpected Error!!!' })  
-    //     )  
     dispatch({ type: SEARCH_CAR, data: searchterm });  
 }
 
@@ -31,12 +26,12 @@ export const addCar = addedCar => dispatch => {
     ) 
 }
 
+export const DeleteCar = DeletedCar => dispatch => {
+    console.log('DeletedCar', DeletedCar);
+    dispatch({ type: REMOVE_CAR, data: DeletedCar });  
+
+}
+
 export const updateCar = updatedCar => dispatch => {
     
 }
-
-export const DeleteCar = DeletedCar => dispatch => {
-    
-}
-
-

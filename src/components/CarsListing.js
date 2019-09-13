@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { loadCars } from '../actions/cars.actions';
+import { loadCars, DeleteCar } from '../actions/cars.actions';
 
 class CarsListing extends Component {
-    
-    state={
-        filteredCars : [] 
+
+    constructor(props) {
+        super(props);  
+        this.state={
+            filteredCars : [] 
+        }
+        this.onClick = this.onClick.bind(this)
     }
+    
+   
 
     async componentDidMount(){
         await this.props.loadCars();
@@ -30,12 +36,21 @@ class CarsListing extends Component {
         }
     }
 
+    onClick(car){
+        this.props.DeleteCar(car);
+    }
+
     render() {
         const { data, loading, error } = this.props;
+
+        // if (!data || !loading) {
+        //     return <div>loading</div>;
+        // }
+          
         return (
             <div>
                 {this.state.filteredCars.map(car=>
-                    <p key={car.id}>{car.name}</p>
+                    <p onClick={(e) =>this.onClick(car)} key={car.id}>{car.name}</p>
                 )}
             </div>
         )
@@ -46,11 +61,12 @@ const mapStateToProps = state => ({
     data: state.carsReducer.data,  
     loading: state.carsReducer.loading,  
     error: state.carsReducer.error,  
-    search: state.carsReducer.search,  
+    search: state.carsReducer.search,
  });  
    
  const mapDispatchToProps = {  
-    loadCars  
+    loadCars,
+    DeleteCar 
  };
 
  CarsListing.propTypes = {

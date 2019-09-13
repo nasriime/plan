@@ -5,7 +5,8 @@ const initialState = {
     data: [],
     loading: false,  
     error: '',
-    search: ''
+    search: '',
+    // deletedItem: {}
 }
 
 export default function(state = initialState, action){
@@ -41,6 +42,13 @@ export default function(state = initialState, action){
             return {
                 ...state,
                 search: action.data
+            }
+        }
+        case REMOVE_CAR: {
+            const newCrasArray = Object.assign([], state.data).filter(car=> car.id !== action.data.id)
+            return {
+                ...state,
+                data: newCrasArray
             }
         }
         default: {
