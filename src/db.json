@@ -23,6 +23,14 @@
       "horsepower": 210,
       "price": 700000,
       "type": "sportscar"
+    },
+    {
+      "name": "kia",
+      "model": "sportage",
+      "horsepower": "200",
+      "price": "600000",
+      "type": "",
+      "id": 4
     }
   ]
 }

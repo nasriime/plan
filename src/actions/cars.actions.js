@@ -18,7 +18,7 @@ export const loadCars = () => dispatch => {
 }
 
 export const addCar = addedCar => dispatch => {
-    axios.post('http://localhost:4000/cars') 
+    axios.post('http://localhost:4000/cars', addedCar) 
     .then(  
         data => dispatch({ type: ADD_CAR, data: addedCar }),  
         error => dispatch({ type: LOAD_CARS_ERROR, error: error.message || 'Unexpected Error!!!' })  

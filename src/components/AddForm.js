@@ -125,7 +125,7 @@ class AddForm extends Component {
                         </select>
                     </div>
                     { isEmpty(itemToUpdate) && (
-                        <button type="submit" className="btn btn-primary">Submit</button>
+                        <button type="submit" className="btn btn-primary">Add</button>
                     )}
                 </form>
                 { !isEmpty(itemToUpdate) && (
