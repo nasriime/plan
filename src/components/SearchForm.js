@@ -47,7 +47,9 @@ const mapDispatchToProps = {
  };  
 
 SearchForm.propTypes = {
-
+    data: PropTypes.array,  
+    loading: PropTypes.bool,  
+    error: PropTypes.string,  
 }
 
 export default connect(

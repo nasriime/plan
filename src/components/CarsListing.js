@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { loadCars, DeleteCar, updateCar } from '../actions/cars.actions';
 
@@ -83,7 +84,10 @@ const mapStateToProps = state => ({
  };
 
  CarsListing.propTypes = {
-
+    data: PropTypes.array,  
+    loading: PropTypes.bool,  
+    error: PropTypes.string,  
+    search: PropTypes.string,
 }
 
 export default connect( 

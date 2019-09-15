@@ -152,7 +152,10 @@ const mapDispatchToProps = {
  };  
 
 AddForm.propTypes = {
-
+    data: PropTypes.array,  
+    loading: PropTypes.bool,  
+    error: PropTypes.string,  
+    itemToUpdate: PropTypes.object, 
 }
 
 export default connect(
