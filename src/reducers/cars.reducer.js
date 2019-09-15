@@ -33,9 +33,11 @@ export default function(state = initialState, action){
             }
         }
         case ADD_CAR: {
+            action.data.id = state.data[state.data.length-1].id + 1;
             return {
                 ...state,
-                data: [...state.data, action.data]
+                data: [...state.data, action.data],
+                loading: false
             }
         }
         case SEARCH_CAR: {
@@ -48,7 +50,8 @@ export default function(state = initialState, action){
             const newCrasArray = Object.assign([], state.data).filter(car=> car.id !== action.data.id)
             return {
                 ...state,
-                data: newCrasArray
+                data: newCrasArray,
+                loading: false
             }
         }
         case UPDATE_CAR: {
@@ -62,7 +65,8 @@ export default function(state = initialState, action){
             state.data[objIndex] = action.data;
             return {
                 ...state,
-                data: [...state.data]
+                data: [...state.data],
+                loading: false
             }
         }
         default: {

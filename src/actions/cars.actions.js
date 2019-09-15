@@ -20,6 +20,8 @@ export const loadCars = () => dispatch => {
 }
 
 export const addCar = addedCar => dispatch => {
+    dispatch({ type: LOAD_CARS_LOADING });  
+
     axios.post('http://localhost:4000/cars', addedCar) 
     .then(  
         ()=> dispatch({ type: ADD_CAR, data: addedCar }),  
@@ -30,6 +32,8 @@ export const addCar = addedCar => dispatch => {
 }
 
 export const DeleteCar = DeletedCar => dispatch => {
+    dispatch({ type: LOAD_CARS_LOADING });  
+
     axios.delete(`http://localhost:4000/cars/${DeletedCar.id}`) 
     .then(  
         ()=> dispatch({ type: REMOVE_CAR, data: DeletedCar }),
@@ -45,6 +49,8 @@ export const updateCar = carToUpdate => dispatch => {
 }
 
 export const updatedCar = carToUpdate => dispatch => {
+    dispatch({ type: LOAD_CARS_LOADING });  
+
     axios.put(`http://localhost:4000/cars/${carToUpdate.id}`,carToUpdate) 
     .then(  
         ()=> dispatch({ type: CAR_TO_UPDATE, data: carToUpdate }),
