@@ -20,13 +20,17 @@ export const loadCars = () => dispatch => {
 export const addCar = addedCar => dispatch => {
     axios.post('http://localhost:4000/cars', addedCar) 
     .then(  
-        data => dispatch({ type: ADD_CAR, data: addedCar }),  
+        ()=> dispatch({ type: ADD_CAR, data: addedCar }),  
         error => dispatch({ type: LOAD_CARS_ERROR, error: error.message || 'Unexpected Error!!!' })  
     ) 
 }
 
 export const DeleteCar = DeletedCar => dispatch => {
-    dispatch({ type: REMOVE_CAR, data: DeletedCar });  
+    axios.delete(`http://localhost:4000/cars/${DeletedCar.id}`) 
+    .then(  
+        ()=> dispatch({ type: REMOVE_CAR, data: DeletedCar }),
+        error => dispatch({ type: LOAD_CARS_ERROR, error: error.message || 'Unexpected Error!!!' })  
+    ) 
 
 }
 
@@ -36,6 +40,10 @@ export const updateCar = carToUpdate => dispatch => {
 }
 
 export const updatedCar = carToUpdate => dispatch => {
-    dispatch({ type: CAR_TO_UPDATE, data: carToUpdate });  
+    axios.put(`http://localhost:4000/cars/${carToUpdate.id}`,carToUpdate) 
+    .then(  
+        ()=> dispatch({ type: CAR_TO_UPDATE, data: carToUpdate }),
+        error => dispatch({ type: LOAD_CARS_ERROR, error: error.message || 'Unexpected Error!!!' })  
+    )
 
 }

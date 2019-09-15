@@ -25,11 +25,12 @@ class SearchForm extends Component {
         const {search} = this.state;
 
         return (
-            <div>
+            <InputWrapper>
+                <h3>Search</h3>
                 <input type="text" className="form-control" id="search" name="search"
                     value={search} onChange={this.onChange}
                     aria-describedby="search" placeholder="Search by car name" />
-            </div>
+            </InputWrapper>
         )
     }
 }
@@ -53,3 +54,11 @@ export default connect(
     mapStateToProps,  
     mapDispatchToProps
 )(SearchForm) 
+
+
+const InputWrapper = styled.div`
+    margin-bottom:30px;
+    h3{
+        margin-bottom:40px;
+    }
+`;

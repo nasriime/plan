@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { isEmpty } from 'lodash';
-import uuid from "uuid";
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { addCar, updateCar, updatedCar } from '../actions/cars.actions';
@@ -30,7 +29,6 @@ class AddForm extends Component {
         e.preventDefault();
         const {name, model, horsepower, price, type} = this.state;
         this.props.addCar({
-            // id: uuid.v4(),
             name,  
             model,  
             horsepower,  
@@ -41,7 +39,7 @@ class AddForm extends Component {
             name: '',  
             model: '',  
             horsepower: '',  
-            price: 's',
+            price: '',
             type: ''
         })
     }
@@ -96,6 +94,7 @@ class AddForm extends Component {
 
         return (
             <div>
+                <h3>Add new car</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label htmlFor="name">Car name</label>
@@ -131,7 +130,7 @@ class AddForm extends Component {
                 { !isEmpty(itemToUpdate) && (
                     <>
                         <button className="btn btn-primary" onClick={this.editCar}>Edit</button>
-                        <button className="btn btn-primary" onClick={this.cancelEdit}>cancel</button>
+                        <button className="btn btn-secondary" onClick={this.cancelEdit}>cancel</button>
                     </>
                 )}
             </div>
