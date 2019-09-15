@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 import { loadCars, DeleteCar, updateCar } from '../actions/cars.actions';
 
 class CarsListing extends Component {
@@ -55,11 +56,13 @@ class CarsListing extends Component {
         return (
             <div>
                 {this.state.filteredCars.map(car=> 
-                        <div key={car.id}>
-                            <span >{car.name}</span>
-                            <button type="button" onClick={(e) =>this.edit(car)} className="btn btn-primary">Edit</button>
-                            <button type="button" onClick={(e) =>this.remove(car)} className="btn btn-danger">X</button>
-                        </div>
+                        <Car key={car.id}>
+                            <p className="mr-4">{car.name}</p>
+                            <div>
+                                <button type="button" onClick={(e) =>this.edit(car)} className="btn btn-primary mr-2">Edit</button>
+                                <button type="button" onClick={(e) =>this.remove(car)} className="btn btn-danger">X</button>
+                            </div>
+                        </Car>
                 )}
             </div>
         )
@@ -86,3 +89,10 @@ const mapStateToProps = state => ({
 export default connect( 
     mapStateToProps,  
     mapDispatchToProps)(CarsListing)
+
+const Car = styled.div`
+    display:flex;    
+    p{
+        min-width:200px;
+    }
+`;

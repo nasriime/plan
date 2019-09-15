@@ -129,7 +129,7 @@ class AddForm extends Component {
                 </form>
                 { !isEmpty(itemToUpdate) && (
                     <>
-                        <button className="btn btn-primary" onClick={this.editCar}>Edit</button>
+                        <button className="btn btn-primary mr-2" onClick={this.editCar}>Edit</button>
                         <button className="btn btn-secondary" onClick={this.cancelEdit}>cancel</button>
                     </>
                 )}
