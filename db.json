@@ -4,8 +4,8 @@
       "id": 1,
       "name": "Mercedes",
       "model": "w212",
-      "horsepower": 170,
-      "price": 500000,
+      "horsepower": 150,
+      "price": 300000,
       "type": "Van"
     },
     {
@@ -39,6 +39,14 @@
       "price": "800000",
       "type": "Sport Car",
       "id": 5
+    },
+    {
+      "id": 6,
+      "name": "opel",
+      "model": "astra",
+      "horsepower": 210,
+      "price": 315000,
+      "type": "Sport Car"
     }
   ]
 }

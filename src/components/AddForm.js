@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { isEmpty } from 'lodash';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { addCar, updateCar, updatedCar } from '../actions/cars.actions';
 class AddForm extends Component {
@@ -93,7 +92,7 @@ class AddForm extends Component {
         const  { itemToUpdate } = this.props;
 
         return (
-            <div>
+            <div className="mb-5">
                 <h3>Add new car</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">

@@ -49,16 +49,18 @@ class CarsListing extends Component {
 
     render() {
         const { data, loading, error } = this.props;
+        const { filteredCars } = this.state;
 
-        // if (!data || !loading) {
-        //     return <div>loading</div>;
-        // }
+        if (!data || loading) {
+            return <div className="pl-3">loading...</div>;
+        }
           
         return (
-            <div>
-                {this.state.filteredCars.map(car=> 
+            <div className="mb-5">
+                <p className="text-danger">{error}</p>
+                { filteredCars.map(car=> 
                         <Car key={car.id}>
-                            <p className="mr-4">{car.name}</p>
+                            <p className="mr-4 pl-3">{car.name}</p>
                             <div>
                                 <button type="button" onClick={(e) =>this.edit(car)} className="btn btn-primary mr-2">Edit</button>
                                 <button type="button" onClick={(e) =>this.remove(car)} className="btn btn-danger">X</button>
